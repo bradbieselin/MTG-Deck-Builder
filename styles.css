@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: 	#696969;
+}
+
+.mtg-logo {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+
+.gradient {
+    background: linear-gradient(90deg, rgba(135,10,10,1) 0%, rgba(145,78,78,1) 52%, rgba(255,166,0,1) 100%);
+    height: 2px;
+    margin: 1rem;
+}
+
+.row {
+    display: flex;
+    text-align: center;
+}
+
+.cardlist-col {
+    flex: 65%;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardlist {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: auto;
+    margin: 1rem;
+}
+
+.card {
+    border: 2px solid black;
+    margin: .5rem;
+}
+
+.cardImage {
+    padding-bottom: .5rem;
+}
+
+.cardinfo-col {
+    flex: 35%;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: white;
+}
+
+.search-input {
+    font-size: 1.3rem;
+    color: white;
+}
