@@ -8,9 +8,9 @@ html {
 
 .mtg-logo {
     display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
 }
 
 .gradient {
@@ -34,7 +34,7 @@ html {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: auto;
-    margin: 1rem;
+    margin: 3rem;
 }
 
 .card {
@@ -57,4 +57,14 @@ html {
 .search-input {
     font-size: 1.3rem;
     color: white;
+}
+
+img:hover {
+    transform: scale(1.5);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.cardImage {
+    width: 75%;
 }
