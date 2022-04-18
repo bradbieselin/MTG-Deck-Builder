@@ -25,7 +25,7 @@ html {
 }
 
 .cardlist-col {
-    flex: 65%;
+    flex: 50%;
     align-items: center;
     justify-content: center;
 }
