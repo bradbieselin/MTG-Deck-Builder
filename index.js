@@ -1,3 +1,4 @@
+
 const filterInput = document.getElementById('filter')
 filterInput.addEventListener('keyup', fetchAutoComplete)
 
@@ -18,34 +19,29 @@ function getCardImages(cards) {
         fetch(`https://api.scryfall.com/cards/named?fuzzy=${element}`)
         .then(res => res.json())
         .then(card => {
-            console.log(card)
             //createImages(card.name, card['image_uris'].small)
             let img = document.createElement("img");
-            img.name = card.name;
-            img.colors = card.colors;
-            img.flavorText = card.flavor_text;
-            img.keywords = card.keywords;
-            img.src = card['image_uris'].small;
+            img.src = card['image_uris'].normal;
             img.className = "cardImage";
-            img.artist = card.artist;
-            img.oracleText = card.orcale_text;
-            img.price = card.prices.usd;
-            img.addEventListener("click", (e) => handleClick(e, card));
             cardList.append(img);
-
+            img.addEventListener('click', (e) => handleClick(card, e))
         })
         .then(sleeper(100))
     })
 };
 
-function handleClick(e) {
-    console.log(e.target)
+function handleClick(card, e){
+//    const details = document.querySelector('#details')
+   document.querySelector('#details-image').src = card['image_uris'].normal;
+   document.querySelector('#details-cardname').textContent = card.name;
+   document.querySelector('#details-oracletext').textContent = card.oracle_text;
+   document.querySelector('#details-powertoughness').textContent = `${card.power}/${card.toughness}`
 }
+
 
 //API Delay
 function sleeper(ms) {
     return function(x) {
       return new Promise(resolve => setTimeout(() => resolve(x), ms));
     };
-}
-
+  }

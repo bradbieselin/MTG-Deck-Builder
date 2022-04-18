@@ -18,10 +18,20 @@
             <label class="search-input" for="filter">Enter card name: </label>
             <input type="text" name="filter" id="filter"></input>
 
-            <div class="cardlist"></div>
+            <div class="cardlist" id="filtered">
+            </div>
+
+            <div class="cardlist" id="favs">
+                <p>test</p>
+            </div>
         </div>
 
-        <div class="cardinfo-col">CARD INFO</div>
+        <div class="cardinfo-col" id="details">CARD INFO
+            <img id="details-image">
+            <h2 id="details-cardname"></h2>
+            <h3 id="details-oracletext"></h3>
+            <h3 id="details-powertoughness"></h3>
+        </div>
     </div>
 </body>
 </html>
