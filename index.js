@@ -37,7 +37,9 @@ function showDisplay(card, e){
   document.querySelector('#details-image').obj = card
   document.querySelector('#details-cardname').textContent = card.name;
   document.querySelector('#details-oracletext').textContent = card.oracle_text;
-  document.querySelector('#details-powertoughness').textContent = `${card.power}/${card.toughness}`
+  if(card.power){
+    document.querySelector('#details-powertoughness').textContent = `Power: ${card.power} / Toughness: ${card.toughness}`
+  }
   addToCartButton.style.display = 'block'
 }
 
@@ -49,24 +51,30 @@ function sleeper(ms) {
   }
 
 const addToCartButton = document.querySelector('#add-to-cart')
-addToCartButton.addEventListener('click', addToCart())
+addToCartButton.addEventListener('click', addToCart)
 
   function addToCart(){
     // post to db
     // add to favs div
     const img = document.createElement("img");
     let card = document.querySelector('#details-image')
-    // img.src = card['image_uris'].normal;
+    img.src = card.obj['image_uris'].normal
     img.className = "cardImage";
     favs.append(img);
     img.addEventListener('click', (e) => showDisplay(card, e))
 
-    // postCard(card.obj)
+    postCard(card.obj)
 }
 
 //takes obj and posts to database
 function postCard(obj){
-    // const newObj = 
+  fetch('http://localhost:3000/favorites',{
+    method: 'POST',
+    headers: {
+     'Content-Type': 'application/json'
+    },
+    body:JSON.stringify(obj)
+  })
 }
 
 //button to toggle divs.
