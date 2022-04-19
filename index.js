@@ -1,36 +1,38 @@
-
 const filterInput = document.getElementById('filter')
-filterInput.addEventListener('keyup', fetchAutoComplete)
+filterInput.addEventListener('input', fetchAutoComplete)
 
 const cardList = document.querySelector('.cardlist')
 const favs = document.getElementById('favs')
 
 //Pass user input through autocomplete API to generate 20 cards
+let timeOut = 0;
 function fetchAutoComplete() {
+  clearTimeout(timeOut);
+  timeOut = setTimeout(function () {
     cardList.innerHTML = ``;
     fetch(`https://api.scryfall.com/cards/autocomplete?q=${filterInput.value}`)
     .then(res => res.json())
     .then(res => getCardImages(res.data))
-    .then(sleeper(100))
+  }, 500)
 };
 
 //Get the image of each card generated
 function getCardImages(cards) {
-  cards.forEach(element => {
-    fetch(`https://api.scryfall.com/cards/named?fuzzy=${element}`)
-    .then(res => res.json())
-    .then(card => {
-      //createImages(card.name, card['image_uris'].small)
-      const img = document.createElement("img");
-       img.src = card['image_uris'].normal;
-      img.className = "cardImage";
-      cardList.append(img);
-      img.addEventListener('click', (e) => showDisplay(card, e))
-     })
-    .then(sleeper(100))
-  })
+    cards.forEach(element => {
+        fetch(`https://api.scryfall.com/cards/named?fuzzy=${element}`)
+        .then(res => res.json())
+        .then(card => {
+            const img = document.createElement("img");
+            img.src = card['image_uris'].normal;
+            img.className = "cardImage";
+            cardList.append(img);
+            img.addEventListener('click', (e) => showDisplay(card, e))
+        })
+        .catch(err => console.log(err))
+    })
 };
 
+//Load favorites list on page load
 function initialize() {
   fetch(`http://localhost:3000/favorites`)
   .then(res => res.json())
@@ -47,8 +49,9 @@ function initialize() {
 }))}
 initialize();
 
+
+//Display cards when clicked
 function showDisplay(card, e){
-//    const details = document.querySelector('#details')
   document.querySelector('#details-image').src = card['image_uris'].normal;
   document.querySelector('#details-image').obj = card
   document.querySelector('#details-cardname').textContent = card.name;
@@ -62,10 +65,15 @@ function showDisplay(card, e){
 //API Delay
 function sleeper(ms) {
     return function(x) {
-      return new Promise(resolve => setTimeout(() => resolve(x), ms));
+      return new Promise(resolve => setTimeout(() => {
+        console.log("sleeper") 
+        resolve(x);
+      }, ms));
     };
   }
 
+
+//Add card to favorites list when button clicked
 const addToCartButton = document.querySelector('#add-to-cart')
 addToCartButton.addEventListener('click', addToCart)
 
@@ -93,7 +101,7 @@ function postCard(obj){
   })
 }
 
-//button to toggle divs.
+//button to toggle between card search and favorites list
 const toggleDivsBtn = document.querySelector("#toggle-divs")
 toggleDivsBtn.addEventListener('click', toggleDivs)
 
@@ -136,5 +144,5 @@ function handleDelete(e){
 
 //
 function deleteCard(e){
-  
+
 }
