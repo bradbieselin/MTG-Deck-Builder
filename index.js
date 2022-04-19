@@ -1,6 +1,5 @@
-
 const filterInput = document.getElementById('filter')
-filterInput.addEventListener('keyup', fetchAutoComplete)
+filterInput.addEventListener('input', fetchAutoComplete)
 
 const cardList = document.querySelector('.cardlist')
 const favs = document.getElementById('favs')
@@ -11,7 +10,7 @@ function fetchAutoComplete() {
     fetch(`https://api.scryfall.com/cards/autocomplete?q=${filterInput.value}`)
     .then(res => res.json())
     .then(res => getCardImages(res.data))
-    .then(sleeper(100))
+    .then(sleeper(1000))
 };
 
 //Get the image of each card generated
@@ -27,7 +26,8 @@ function getCardImages(cards) {
             cardList.append(img);
             img.addEventListener('click', (e) => showDisplay(card, e))
         })
-        .then(sleeper(100))
+        .catch(err => console.log(err))
+        .then(sleeper(1000))
     })
 };
 
@@ -59,7 +59,10 @@ function showDisplay(card, e){
 //API Delay
 function sleeper(ms) {
     return function(x) {
-      return new Promise(resolve => setTimeout(() => resolve(x), ms));
+      return new Promise(resolve => setTimeout(() => {
+        console.log("sleeper") 
+        resolve(x);
+      }, ms));
     };
   }
 
