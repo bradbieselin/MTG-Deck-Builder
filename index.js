@@ -13,7 +13,7 @@ function fetchAutoComplete() {
     fetch(`https://api.scryfall.com/cards/autocomplete?q=${filterInput.value}`)
     .then(res => res.json())
     .then(res => getCardImages(res.data))
-  }, 50)
+  }, 500)
 };
 
 //Get the image of each card generated
