@@ -34,15 +34,18 @@ function getCardImages(cards) {
 
 //Load favorites list on page load
 function initialize() {
-    fetch(`http://localhost:3000/favorites`)
-    .then(res => res.json())
-    .then(arr => arr.map(card => {
-        console.log(card)
-        const img = document.createElement("img");
-        img.src = card['image_uris'].normal;
-        img.className = "cardImage";
-        favs.append(img);
-        img.addEventListener('click', (e) => showDisplay(card, e))
+  fetch(`http://localhost:3000/favorites`)
+  .then(res => res.json())
+  .then(arr => arr.map(card => {
+    console.log(card)
+    const img = document.createElement("img");
+    img.src = card['image_uris'].normal;
+    img.className = "cardImage";
+    favs.append(img);
+    img.addEventListener('click', (e) => showDisplay(card, e))
+    img.addEventListener('click', handleDelete)
+
+
 }))}
 initialize();
 
@@ -82,8 +85,8 @@ addToCartButton.addEventListener('click', addToCart)
     img.src = card['image_uris'].normal
     img.className = "cardImage";
     img.addEventListener('click', (e) => showDisplay(card, e))
+    img.addEventListener('click', handleDelete)
     favs.append(img);
-    
     postCard(card)
 }
 
@@ -107,11 +110,39 @@ function toggleDivs(){
     toggleDivsBtn.textContent = 'Browse Cards.'
     cardList.style.display = 'none'
     favs.style.display = 'grid'
+    deleteButton.style.display ='block'
   } else {
     toggleDivsBtn.textContent = 'View Favorites.'
     cardList.style.display = 'grid'
     favs.style.display = 'none'
+    deleteButton.style.display ='none'
   }
 }
 
 //delete button
+const deleteButton = document.querySelector("#delete")
+deleteButton.addEventListener('click', deleteToggle)
+
+function deleteToggle(){
+  if (deleteButton.textContent == 'Click to remove items.'){
+    deleteButton.textContent = 'Finish removing items.';
+    document.querySelector("#delete-warning").style.color= 'red';
+    document.querySelector("#delete-warning").style.display = 'block';
+  } else {
+    deleteButton.textContent = 'Click to remove items.';
+    document.querySelector("#delete-warning").style.display = 'none';
+  }
+}
+
+function handleDelete(e){
+  console.log(e)
+  if (deleteButton.textContent == 'Finish removing items.'){
+    e.target.remove();
+    deleteCard(e)
+  }
+}
+
+//
+function deleteCard(e){
+
+}
