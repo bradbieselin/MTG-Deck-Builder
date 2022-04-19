@@ -3,6 +3,7 @@ const filterInput = document.getElementById('filter')
 filterInput.addEventListener('keyup', fetchAutoComplete)
 
 const cardList = document.querySelector('.cardlist')
+const favs = document.getElementById('favs')
 
 //Pass user input through autocomplete API to generate 20 cards
 function fetchAutoComplete() {
@@ -20,24 +21,25 @@ function getCardImages(cards) {
         .then(res => res.json())
         .then(card => {
             //createImages(card.name, card['image_uris'].small)
-            let img = document.createElement("img");
+            const img = document.createElement("img");
             img.src = card['image_uris'].normal;
             img.className = "cardImage";
             cardList.append(img);
-            img.addEventListener('click', (e) => handleClick(card, e))
+            img.addEventListener('click', (e) => showDisplay(card, e))
         })
         .then(sleeper(100))
     })
 };
 
-function handleClick(card, e){
+function showDisplay(card, e){
 //    const details = document.querySelector('#details')
-   document.querySelector('#details-image').src = card['image_uris'].normal;
-   document.querySelector('#details-cardname').textContent = card.name;
-   document.querySelector('#details-oracletext').textContent = card.oracle_text;
-   document.querySelector('#details-powertoughness').textContent = `${card.power}/${card.toughness}`
+  document.querySelector('#details-image').src = card['image_uris'].normal;
+  document.querySelector('#details-image').obj = card
+  document.querySelector('#details-cardname').textContent = card.name;
+  document.querySelector('#details-oracletext').textContent = card.oracle_text;
+  document.querySelector('#details-powertoughness').textContent = `${card.power}/${card.toughness}`
+  addToCartButton.style.display = 'block'
 }
-
 
 //API Delay
 function sleeper(ms) {
@@ -45,3 +47,45 @@ function sleeper(ms) {
       return new Promise(resolve => setTimeout(() => resolve(x), ms));
     };
   }
+
+const addToCartButton = document.querySelector('#add-to-cart')
+addToCartButton.addEventListener('click', addToCart())
+
+  function addToCart(){
+    // post to db
+    // add to favs div
+    const img = document.createElement("img");
+    let card = document.querySelector('#details-image')
+    // img.src = card['image_uris'].normal;
+    img.className = "cardImage";
+    favs.append(img);
+    img.addEventListener('click', (e) => showDisplay(card, e))
+
+    // postCard(card.obj)
+}
+
+//takes obj and posts to database
+function postCard(obj){
+    // const newObj = 
+}
+
+//button to toggle divs.
+const toggleDivsBtn = document.querySelector("#toggle-divs")
+toggleDivsBtn.addEventListener('click', toggleDivs)
+
+function toggleDivs(){
+  console.log('clicked!')
+  if (toggleDivsBtn.textContent == 'View Favorites.'){
+    toggleDivsBtn.textContent = 'Browse Cards.'
+    cardList.style.display = 'none'
+    favs.style.display = 'flex'
+    console.log('if')
+  } else {
+    toggleDivsBtn.textContent = 'View Favorites.'
+    cardList.style.display = 'grid'
+    favs.style.display = 'none'
+    console.log('else')
+  }
+}
+
+//delete button
