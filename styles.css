@@ -59,7 +59,7 @@ html {
     color: white;
 }
 
-img:hover {
+.cardImage:hover {
     transform: scale(1.5);
     overflow: hidden;
     cursor: pointer;
