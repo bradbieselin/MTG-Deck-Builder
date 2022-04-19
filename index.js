@@ -31,6 +31,19 @@ function getCardImages(cards) {
     })
 };
 
+function initialize() {
+    fetch(`http://localhost:3000/favorites`)
+    .then(res => res.json())
+    .then(arr => arr.map(card => {
+        console.log(card)
+        const img = document.createElement("img");
+        img.src = card['image_uris'].normal;
+        img.className = "cardImage";
+        favs.append(img);
+        img.addEventListener('click', (e) => showDisplay(card, e))
+}))}
+initialize();
+
 function showDisplay(card, e){
 //    const details = document.querySelector('#details')
   document.querySelector('#details-image').src = card['image_uris'].normal;
