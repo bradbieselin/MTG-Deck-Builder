@@ -15,16 +15,17 @@
     <div class="row">
         <div class="cardlist-col">
 
-        <!-- filter -->
-        <div class="filter-container">
-            <label class="search-input" for="filter">Enter card name: </label>
-            <input type="text" name="filter" id="filter"></input>
-            <button id="toggle-divs">View Favorites.</button>
-        </div>
-
+            <div class="filter-container">
+                <label class="search-input" for="filter">Enter card name: </label>
+                <input type="text" name="filter" id="filter"></input>
+                <button id="toggle-divs">View Favorites.</button>
+                <button id="delete">Click to remove items.</button>
+                <h3 id="delete-warning">Delete mode is on: click on cards you want to remove.</h3>
+            </div>
+        
             <div class="cardlist" id="filtered">
             </div>
-
+        
             <div class="cardlist" id="favs">
             </div>
         </div>
