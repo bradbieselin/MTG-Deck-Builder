@@ -4,6 +4,7 @@ filterInput.addEventListener('input', fetchAutoComplete)
 const cardList = document.querySelector('.cardlist')
 const favs = document.getElementById('favs')
 
+
 //Pass user input through autocomplete API to generate 20 cards
 let timeOut = 0;
 function fetchAutoComplete() {
@@ -33,21 +34,22 @@ function getCardImages(cards) {
 };
 
 //Load favorites list on page load
-function initialize() {
+function renderFavorites() {
   fetch(`http://localhost:3000/favorites`)
   .then(res => res.json())
   .then(arr => arr.map(card => {
-    console.log(card)
+    // console.log(card)
     const img = document.createElement("img");
     img.src = card['image_uris'].normal;
     img.className = "cardImage";
+    img.id = card.id
     favs.append(img);
     img.addEventListener('click', (e) => showDisplay(card, e))
     img.addEventListener('click', handleDelete)
 
 
 }))}
-initialize();
+renderFavorites();
 
 
 //Display cards when clicked
@@ -78,16 +80,18 @@ const addToCartButton = document.querySelector('#add-to-cart')
 addToCartButton.addEventListener('click', addToCart)
 
   function addToCart(){
-    // post to db
-    // add to favs div
     const img = document.createElement("img");
     let card = document.querySelector('#details-image').obj
+    card.id = currentID +1
+    img.id = card.id
     img.src = card['image_uris'].normal
     img.className = "cardImage";
     img.addEventListener('click', (e) => showDisplay(card, e))
+    console.log(img.id)
     img.addEventListener('click', handleDelete)
     favs.append(img);
     postCard(card)
+    currentID++
 }
 
 //takes obj and posts to database
@@ -136,6 +140,7 @@ function deleteToggle(){
 
 function handleDelete(e){
   console.log(e)
+  console.log(e.target.id)
   if (deleteButton.textContent == 'Finish removing items.'){
     e.target.remove();
     deleteCard(e)
@@ -144,5 +149,21 @@ function handleDelete(e){
 
 //
 function deleteCard(e){
+  fetch(`http://localhost:3000/favorites/${e.target.id}`,{
+    method: 'DELETE',
+    headers: {
+     'Content-Type': 'application/json'
+    }
+})}
 
-}
+// current id 
+let currentID;
+function findID() {
+  fetch('http://localhost:3000/favorites/')
+  .then(resp => resp.json())
+  .then(arr => {
+    if (arr.length > 0){
+    currentID = arr[arr.length -1].id}
+    else currentID =0
+})}
+findID()
