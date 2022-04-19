@@ -67,7 +67,9 @@ html {
 }
 
 #details-image {
-    width: 60%;
+    width: 45%;
+    padding: 2rem;
+    padding-top: 3rem;
 }
 
 #favs {
@@ -77,4 +79,32 @@ html {
 #add-to-cart {
     display: none;
     margin: auto
+}
+
+#details-cardname {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    font-style: oblique;
+}
+
+#details-oracletext {
+    font-size: 1.3rem;
+    padding-right: 1rem;
+    font-style: italic;
+}
+
+#favs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: auto;
+    margin: 3rem;
+}
+
+.filter-container {
+    padding-top: .5rem;
+}
+
+#filtered.cardlist {
+    padding: .7rem;
 }
