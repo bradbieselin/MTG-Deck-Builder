@@ -44,6 +44,7 @@ html {
 
 .cardImage {
     padding-bottom: .5rem;
+    width: 75%;
 }
 
 .cardinfo-col {
@@ -65,6 +66,15 @@ html {
     cursor: pointer;
 }
 
-.cardImage {
-    width: 75%;
+#details-image {
+    width: 60%;
+}
+
+#favs {
+    display: none;
+}
+
+#add-to-cart {
+    display: none;
+    margin: auto
 }
