@@ -63,7 +63,7 @@ addToCartButton.addEventListener('click', addToCart)
     img.addEventListener('click', (e) => showDisplay(card, e))
     favs.append(img);
     
-    postCard(card.obj)
+    postCard(card)
 }
 
 //takes obj and posts to database
