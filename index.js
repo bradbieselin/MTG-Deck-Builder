@@ -57,12 +57,12 @@ addToCartButton.addEventListener('click', addToCart)
     // post to db
     // add to favs div
     const img = document.createElement("img");
-    let card = document.querySelector('#details-image')
-    img.src = card.obj['image_uris'].normal
+    let card = document.querySelector('#details-image').obj
+    img.src = card['image_uris'].normal
     img.className = "cardImage";
-    favs.append(img);
     img.addEventListener('click', (e) => showDisplay(card, e))
-
+    favs.append(img);
+    
     postCard(card.obj)
 }
 
@@ -82,17 +82,14 @@ const toggleDivsBtn = document.querySelector("#toggle-divs")
 toggleDivsBtn.addEventListener('click', toggleDivs)
 
 function toggleDivs(){
-  console.log('clicked!')
   if (toggleDivsBtn.textContent == 'View Favorites.'){
     toggleDivsBtn.textContent = 'Browse Cards.'
     cardList.style.display = 'none'
-    favs.style.display = 'flex'
-    console.log('if')
+    favs.style.display = 'grid'
   } else {
     toggleDivsBtn.textContent = 'View Favorites.'
     cardList.style.display = 'grid'
     favs.style.display = 'none'
-    console.log('else')
   }
 }
 
