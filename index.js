@@ -64,16 +64,6 @@ function showDisplay(card, e){
   addToCartButton.style.display = 'block'
 }
 
-//API Delay
-function sleeper(ms) {
-    return function(x) {
-      return new Promise(resolve => setTimeout(() => {
-        console.log("sleeper") 
-        resolve(x);
-      }, ms));
-    };
-  }
-
 
 //Add card to favorites list when button clicked
 const addToCartButton = document.querySelector('#add-to-cart')
@@ -110,16 +100,18 @@ const toggleDivsBtn = document.querySelector("#toggle-divs")
 toggleDivsBtn.addEventListener('click', toggleDivs)
 
 function toggleDivs(){
-  if (toggleDivsBtn.textContent == 'View Favorites.'){
-    toggleDivsBtn.textContent = 'Browse Cards.'
-    cardList.style.display = 'none'
-    favs.style.display = 'grid'
-    deleteButton.style.display ='block'
+  if (toggleDivsBtn.textContent == 'View Favorites'){
+    const deleteWarning = document.querySelector("delete-warning");
+    toggleDivsBtn.textContent = 'Browse Cards';
+    cardList.style.display = 'none';
+    favs.style.display = 'grid';
+    deleteButton.style.display ='block';
+    deleteWarning.style.display = "block";
   } else {
-    toggleDivsBtn.textContent = 'View Favorites.'
-    cardList.style.display = 'grid'
-    favs.style.display = 'none'
-    deleteButton.style.display ='none'
+    toggleDivsBtn.textContent = 'View Favorites';
+    cardList.style.display = 'grid';
+    favs.style.display = 'none';
+    deleteButton.style.display ='none';
   }
 }
 

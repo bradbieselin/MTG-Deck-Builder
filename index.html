@@ -9,7 +9,10 @@
     <script defer src="index.js"></script>
 </head>
 <body>
-    <img class="mtg-logo" src ="img/Magic-The-Gathering-logo-800x279.png">
+    <header>
+        <img class="mtg-logo" src ="img/Magic-The-Gathering-logo-800x279.png" onClick="window.location.reload()">
+    </header>
+    
     <div class="gradient"></div>
 
     <div class="row">
@@ -17,9 +20,9 @@
 
             <div class="filter-container">
                 <label class="search-input" for="filter">Enter card name: </label>
-                <input type="text" name="filter" id="filter"></input>
-                <button id="toggle-divs">View Favorites.</button>
-                <button id="delete">Click to remove items.</button>
+                <input type="text" name="filter" id="filter" placeholder="Black Lotus..."></input>
+                <button id="toggle-divs">View Favorites</button>
+                <button id="delete">Remove cards</button>
                 <h3 id="delete-warning">Delete mode is on: click on cards you want to remove.</h3>
             </div>
         
@@ -31,7 +34,7 @@
         </div>
     
         <div class="cardinfo-col" id="details">
-                <button id="add-to-cart">Add to favorites.</button>
+                <button id="add-to-cart">Add to favorites</button>
                 <img id="details-image">
                 <h2 id="details-cardname"></h2>
                 <h3 id="details-oracletext"></h3>
