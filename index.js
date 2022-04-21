@@ -117,18 +117,18 @@ const deleteButton = document.querySelector("#delete");
 deleteButton.addEventListener('click', deleteToggle);
 
 function deleteToggle(){
-  if (deleteButton.textContent == 'Click to remove items.'){
-    deleteButton.textContent = 'Finish removing items.';
+  if (deleteButton.textContent == 'Enable delete mode.'){
+    deleteButton.textContent = 'Disable delete mode.';
     document.querySelector("#delete-warning").style.color= 'red';
     document.querySelector("#delete-warning").style.display = 'block';
   } else {
-    deleteButton.textContent = 'Click to remove items.';
+    deleteButton.textContent = 'Enable delete mode.';
     document.querySelector("#delete-warning").style.display = 'none';
   }
 }
 
 function handleDelete(e){
-  if (deleteButton.textContent == 'Finish removing items.'){
+  if (deleteButton.textContent == 'Disable delete mode.'){
     e.target.remove();
     deleteCard(e);
   }
