@@ -1,8 +1,8 @@
-const filterInput = document.getElementById('filter')
-filterInput.addEventListener('input', fetchAutoComplete)
+const filterInput = document.getElementById('filter');
+filterInput.addEventListener('input', fetchAutoComplete);
 
-const cardList = document.querySelector('.cardlist')
-const favs = document.getElementById('favs')
+const cardList = document.querySelector('.cardlist');
+const favs = document.getElementById('favs');
 
 
 //Pass user input through autocomplete API to generate 20 cards
@@ -14,7 +14,7 @@ function fetchAutoComplete() {
     fetch(`https://api.scryfall.com/cards/autocomplete?q=${filterInput.value}`)
     .then(res => res.json())
     .then(res => getCardImages(res.data))
-  }, 500)
+  }, 100);
 };
 
 //Get the image of each card generated
@@ -29,8 +29,8 @@ function getCardImages(cards) {
             cardList.append(img);
             img.addEventListener('click', (e) => showDisplay(card, e))
         })
-        .catch(err => console.log(err))
-    })
+        .catch(err => console.log(err));
+    });
 };
 
 //Load favorites list on page load
@@ -42,26 +42,24 @@ function renderFavorites() {
     const img = document.createElement("img");
     img.src = card['image_uris'].normal;
     img.className = "cardImage";
-    img.id = card.id
+    img.id = card.id;
     favs.append(img);
-    img.addEventListener('click', (e) => showDisplay(card, e))
-    img.addEventListener('click', handleDelete)
-
-
+    img.addEventListener('click', () => showDisplay(card));
+    img.addEventListener('click', handleDelete);
 }))}
 renderFavorites();
 
 
 //Display cards when clicked
-function showDisplay(card, e){
+function showDisplay(card){
   document.querySelector('#details-image').src = card['image_uris'].normal;
-  document.querySelector('#details-image').obj = card
+  document.querySelector('#details-image').obj = card;
   document.querySelector('#details-cardname').textContent = card.name;
   document.querySelector('#details-oracletext').textContent = card.oracle_text;
   if(card.power){
-    document.querySelector('#details-powertoughness').textContent = `Power: ${card.power} / Toughness: ${card.toughness}`
-  }
-  addToCartButton.style.display = 'block'
+    document.querySelector('#details-powertoughness').textContent = `Power: ${card.power} / Toughness: ${card.toughness}`;
+  } 
+  addToCartButton.style.display = 'block';
 }
 
 
@@ -71,17 +69,16 @@ addToCartButton.addEventListener('click', addToCart)
 
   function addToCart(){
     const img = document.createElement("img");
-    let card = document.querySelector('#details-image').obj
-    card.id = currentID +1
-    img.id = card.id
-    img.src = card['image_uris'].normal
+    let card = document.querySelector('#details-image').obj;
+    card.id = currentID +1;
+    img.id = card.id;
+    img.src = card['image_uris'].normal;
     img.className = "cardImage";
-    img.addEventListener('click', (e) => showDisplay(card, e))
-    console.log(img.id)
-    img.addEventListener('click', handleDelete)
+    img.addEventListener('click', (e) => showDisplay(card, e));
+    img.addEventListener('click', handleDelete);
     favs.append(img);
-    postCard(card)
-    currentID++
+    postCard(card);
+    currentID++;
 }
 
 //takes obj and posts to database
@@ -96,8 +93,8 @@ function postCard(obj){
 }
 
 //button to toggle between card search and favorites list
-const toggleDivsBtn = document.querySelector("#toggle-divs")
-toggleDivsBtn.addEventListener('click', toggleDivs)
+const toggleDivsBtn = document.querySelector("#toggle-divs");
+toggleDivsBtn.addEventListener('click', toggleDivs);
 
 function toggleDivs(){
   if (toggleDivsBtn.textContent == 'View Favorites'){
@@ -116,8 +113,8 @@ function toggleDivs(){
 }
 
 //delete button
-const deleteButton = document.querySelector("#delete")
-deleteButton.addEventListener('click', deleteToggle)
+const deleteButton = document.querySelector("#delete");
+deleteButton.addEventListener('click', deleteToggle);
 
 function deleteToggle(){
   if (deleteButton.textContent == 'Click to remove items.'){
@@ -131,11 +128,9 @@ function deleteToggle(){
 }
 
 function handleDelete(e){
-  console.log(e)
-  console.log(e.target.id)
   if (deleteButton.textContent == 'Finish removing items.'){
     e.target.remove();
-    deleteCard(e)
+    deleteCard(e);
   }
 }
 
@@ -158,4 +153,4 @@ function findID() {
     currentID = arr[arr.length -1].id}
     else currentID =0
 })}
-findID()
+findID();
