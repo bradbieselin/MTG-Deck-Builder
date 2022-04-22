@@ -5,8 +5,8 @@ const cardList = document.querySelector('.cardlist');
 const favs = document.getElementById('favs');
 
 const cardListContainer = document.getElementById('filtered-container');
-const favsContainer = document.getElementById('favs-container')
-const detailsContainer = document.getElementById('details')
+const favsContainer = document.getElementById('favs-container');
+const detailsContainer = document.getElementById('details');
 
 
 //Pass user input through autocomplete API to generate 20 cards
@@ -35,7 +35,7 @@ function getCardImages(cards) {
             document.querySelector('#filtered-default-text').textContent = 'Results:'
         })
         .catch(err => console.log(err));
-        detailsContainer.style.display = 'block'
+        document.querySelector("#details-oracletext").style.display = 'block';
     });
 };
 
