@@ -7,6 +7,8 @@ html {
     background-color: 	#696969;
 }
 
+
+
 .mtg-logo {
     display: block;
     margin-left: auto;
@@ -22,7 +24,7 @@ html {
 
 .row {
     display: flex;
-    text-align: center;
+    flex-wrap: wrap;
 }
 
 .cardlist-col {
@@ -35,7 +37,7 @@ html {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: auto;
-    margin: 3rem;
+    margin: 2.5rem;
 }
 
 .card {
@@ -54,13 +56,14 @@ html {
     justify-content: center;
     font-size: 1.3rem;
     color: white;
+    text-align: center;
 }
 
 .search-input {
     font-size: 1.3rem;
+    margin-left: 1.8rem;
     color: white;
     float: left;
-    margin-left: 3rem;
 }
 
 .cardImage:hover {
@@ -106,6 +109,7 @@ html {
 
 .filter-container {
     padding-top: .5rem;
+    display: flex;
 }
 
 #filtered.cardlist {
@@ -115,6 +119,7 @@ html {
 #toggle-divs {
     margin-right: 2rem;
     margin-left: 3rem;
+    float: left;
 }
 
 #filter {
@@ -124,13 +129,13 @@ html {
 
 #delete-warning {
     display: none;
-    color: yellow
+    color: yellow;
+    margin-left: 2rem;
 }
 
 #delete {
     display: none;
     margin: auto;
-    margin-top: 1rem;
     margin-left: 3rem;
 }
 
@@ -145,8 +150,28 @@ html {
     color: white;
 }
 
-#details {
-    display: none;
+#details-oracletext {
+    display:none;
 }
 
+#favs-default-text {
+    margin-left: 3rem;
+}
+
+#filtered-default-text {
+    margin-left: 3rem;
+    flex-basis: 100%; 
+}
+
+.wrapper {
+    margin: 1.3rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+h2 {
+    color: white;
+}
 /* add styling for screen resizes */

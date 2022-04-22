@@ -5,8 +5,8 @@ const cardList = document.querySelector('.cardlist');
 const favs = document.getElementById('favs');
 
 const cardListContainer = document.getElementById('filtered-container');
-const favsContainer = document.getElementById('favs-container')
-const detailsContainer = document.getElementById('details')
+const favsContainer = document.getElementById('favs-container');
+const detailsContainer = document.getElementById('details');
 
 
 //Pass user input through autocomplete API to generate 20 cards
@@ -35,7 +35,7 @@ function getCardImages(cards) {
             document.querySelector('#filtered-default-text').textContent = 'Results:'
         })
         .catch(err => console.log(err));
-        detailsContainer.style.display = 'block'
+        document.querySelector("#details-oracletext").style.display = 'block';
     });
 };
 
@@ -108,16 +108,22 @@ const toggleDivsBtn = document.querySelector("#toggle-divs");
 toggleDivsBtn.addEventListener('click', toggleDivs);
 
 function toggleDivs(){
+  const searchFilter = document.querySelector(".search-filter");
   if (toggleDivsBtn.textContent == 'View Favorites ⭐'){
+    searchFilter.style.display = "none";
     const deleteWarning = document.querySelector("delete-warning");
     toggleDivsBtn.textContent = 'Browse Cards 🔎';
     cardListContainer.style.display = 'none';
+    cardList.style.display = 'none';
     favsContainer.style.display = 'grid';
     deleteButton.style.display ='block';
     deleteWarning.style.display = "block";
+    
   } else {
+    searchFilter.style.display = "block";
     toggleDivsBtn.textContent = 'View Favorites ⭐';
     cardListContainer.style.display = 'grid';
+    cardList.style.display = 'grid';
     favsContainer.style.display = 'none';
     deleteButton.style.display ='none';
   }

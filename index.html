@@ -21,16 +21,19 @@
             <div class="filter-container">
                 <button id="toggle-divs">View Favorites ⭐</button>
                 <button id="delete">Enable delete mode.</button>
+                
+                <div class="search-filter">
+                    <label class="search-input" for="filter">Enter card name: </label>
+                    <input type="text" name="filter" id="filter" placeholder="Black Lotus..."></input>
+                </div>
             </div>
+
             <div id="filtered-container">
-                    <div>
-                        <label class="search-input" for="filter">Enter card name: </label>
-                        <input type="text" name="filter" id="filter" placeholder="Black Lotus..."></input>
-                        <h2 id="filtered-default-text">Looks like you haven't looked up anything!</h2>
-                    </div>
-                    <div class="cardlist" id="filtered">
-                    </div>
-            </div>
+                        
+            <h2 id="filtered-default-text">Looks like you haven't looked up anything!</h2></div>
+            <div class="cardlist" id="filtered"></div>
+            
+
             <div id="favs-container" display="none">
                 <h2 id="favs-default-text">You don't have any cards favorited!!</h2>
                 <h3 id="delete-warning">⚠️⚠️Delete mode is on: click on cards you want to remove.⚠️⚠️</h3>
