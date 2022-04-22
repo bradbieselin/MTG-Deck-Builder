@@ -108,16 +108,22 @@ const toggleDivsBtn = document.querySelector("#toggle-divs");
 toggleDivsBtn.addEventListener('click', toggleDivs);
 
 function toggleDivs(){
+  const searchFilter = document.querySelector(".search-filter");
   if (toggleDivsBtn.textContent == 'View Favorites ⭐'){
+    searchFilter.style.display = "none";
     const deleteWarning = document.querySelector("delete-warning");
     toggleDivsBtn.textContent = 'Browse Cards 🔎';
     cardListContainer.style.display = 'none';
+    cardList.style.display = 'none';
     favsContainer.style.display = 'grid';
     deleteButton.style.display ='block';
     deleteWarning.style.display = "block";
+    
   } else {
+    searchFilter.style.display = "block";
     toggleDivsBtn.textContent = 'View Favorites ⭐';
     cardListContainer.style.display = 'grid';
+    cardList.style.display = 'grid';
     favsContainer.style.display = 'none';
     deleteButton.style.display ='none';
   }

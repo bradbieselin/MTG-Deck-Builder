@@ -7,6 +7,8 @@ html {
     background-color: 	#696969;
 }
 
+
+
 .mtg-logo {
     display: block;
     margin-left: auto;
@@ -134,7 +136,6 @@ html {
 #delete {
     display: none;
     margin: auto;
-    margin-top: 1rem;
     margin-left: 3rem;
 }
 
@@ -164,5 +165,13 @@ html {
 
 .wrapper {
     margin: 1.3rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+h2 {
+    color: white;
 }
 /* add styling for screen resizes */
