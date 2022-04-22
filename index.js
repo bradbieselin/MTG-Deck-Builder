@@ -4,6 +4,10 @@ filterInput.addEventListener('input', fetchAutoComplete);
 const cardList = document.querySelector('.cardlist');
 const favs = document.getElementById('favs');
 
+const cardListContainer = document.getElementById('filtered-container');
+const favsContainer = document.getElementById('favs-container')
+const detailsContainer = document.getElementById('details')
+
 
 //Pass user input through autocomplete API to generate 20 cards
 let timeOut = 0;
@@ -28,8 +32,10 @@ function getCardImages(cards) {
             img.className = "cardImage";
             cardList.append(img);
             img.addEventListener('click', (e) => showDisplay(card, e))
+            document.querySelector('#filtered-default-text').textContent = 'Results:'
         })
         .catch(err => console.log(err));
+        detailsContainer.style.display = 'block'
     });
 };
 
@@ -46,6 +52,9 @@ function renderFavorites() {
     favs.append(img);
     img.addEventListener('click', () => showDisplay(card));
     img.addEventListener('click', handleDelete);
+    document.querySelector('#favs-default-text').textContent = 'Favorites:'
+
+
 }))}
 renderFavorites();
 
@@ -79,6 +88,8 @@ addToCartButton.addEventListener('click', addToCart)
     favs.append(img);
     postCard(card);
     currentID++;
+    document.querySelector('#favs-default-text').textContent = 'Favorites:'
+
 }
 
 //takes obj and posts to database
@@ -97,17 +108,17 @@ const toggleDivsBtn = document.querySelector("#toggle-divs");
 toggleDivsBtn.addEventListener('click', toggleDivs);
 
 function toggleDivs(){
-  if (toggleDivsBtn.textContent == 'View Favorites'){
+  if (toggleDivsBtn.textContent == 'View Favorites ⭐'){
     const deleteWarning = document.querySelector("delete-warning");
-    toggleDivsBtn.textContent = 'Browse Cards';
-    cardList.style.display = 'none';
-    favs.style.display = 'grid';
+    toggleDivsBtn.textContent = 'Browse Cards 🔎';
+    cardListContainer.style.display = 'none';
+    favsContainer.style.display = 'grid';
     deleteButton.style.display ='block';
     deleteWarning.style.display = "block";
   } else {
-    toggleDivsBtn.textContent = 'View Favorites';
-    cardList.style.display = 'grid';
-    favs.style.display = 'none';
+    toggleDivsBtn.textContent = 'View Favorites ⭐';
+    cardListContainer.style.display = 'grid';
+    favsContainer.style.display = 'none';
     deleteButton.style.display ='none';
   }
 }
@@ -119,7 +130,6 @@ deleteButton.addEventListener('click', deleteToggle);
 function deleteToggle(){
   if (deleteButton.textContent == 'Enable delete mode.'){
     deleteButton.textContent = 'Disable delete mode.';
-    document.querySelector("#delete-warning").style.color= 'red';
     document.querySelector("#delete-warning").style.display = 'block';
   } else {
     deleteButton.textContent = 'Enable delete mode.';

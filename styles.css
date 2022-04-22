@@ -75,7 +75,7 @@ html {
     padding-top: 3rem;
 }
 
-#favs {
+#favs-container {
     display: none;
 }
 
@@ -124,6 +124,7 @@ html {
 
 #delete-warning {
     display: none;
+    color: yellow
 }
 
 #delete {
@@ -142,6 +143,10 @@ html {
     text-align: center;
     font-style: italic;
     color: white;
+}
+
+#details {
+    display: none;
 }
 
 /* add styling for screen resizes */
