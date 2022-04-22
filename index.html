@@ -19,25 +19,31 @@
         <div class="cardlist-col">
 
             <div class="filter-container">
-                <label class="search-input" for="filter">Enter card name: </label>
-                <input type="text" name="filter" id="filter" placeholder="Black Lotus..."></input>
-                <button id="toggle-divs">View Favorites</button>
-                <button id="delete">Remove cards</button>
-                <h3 id="delete-warning">Delete mode is on: click on cards you want to remove.</h3>
+                <button id="toggle-divs">View Favorites ⭐</button>
+                <button id="delete">Enable delete mode.</button>
             </div>
-        
-            <div class="cardlist" id="filtered">
+            <div id="filtered-container">
+                    <div>
+                        <label class="search-input" for="filter">Enter card name: </label>
+                        <input type="text" name="filter" id="filter" placeholder="Black Lotus..."></input>
+                        <h2 id="filtered-default-text">Looks like you haven't looked up anything!</h2>
+                    </div>
+                    <div class="cardlist" id="filtered">
+                    </div>
             </div>
-        
-            <div class="cardlist" id="favs">
+            <div id="favs-container" display="none">
+                <h2 id="favs-default-text">You don't have any cards favorited!!</h2>
+                <h3 id="delete-warning">⚠️⚠️Delete mode is on: click on cards you want to remove.⚠️⚠️</h3>
+                <div class="cardlist" id="favs">
+                </div>
             </div>
         </div>
     
         <div class="cardinfo-col" id="details">
-                <button id="add-to-cart">Add to favorites</button>
+                <button id="add-to-cart">Add to favorites ⭐</button>
                 <img id="details-image">
                 <h2 id="details-cardname"></h2>
-                <h3 id="details-oracletext"></h3>
+                <h3 id="details-oracletext">Click on a card to see more about it.</h3>
                 <h3 id="details-powertoughness"></h3>
         </div>
     </div>
